@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello My Little Dancing Penguin</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            background-color: #fce4ec;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            position: relative;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Adds space between buttons */
+            margin-top: 20px;
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px; /* Ensures buttons are equal size */
+        }
+        button:hover {
+            background-color: #d81b60;
+        }
+        #no {
+            position: relative; /* Ensures initial alignment */
+        }
+        #warning, #finalButton {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Hello, My Little Dancing Penguin! 🐧💖</h1>
+        <p id="question">Are you doing alright?</p>
+        
+        <div class="buttons">
+            <button onclick="respond('yes')">Yes :)</button>
+            <button id="no" onclick="handleNo()">No, a bit tired :(</button>
+        </div>
+
+        <p id="warning"></p>
+        <button id="finalButton" onclick="redirectToCountdown()">Yes, I'm sure</button>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        const comfortingQuestions = [
+            "Are you sure? Maybe a little smile can help? 😊",
+            "Btw, Did you know you could never annoy me? 💕",
+            "That's alright, I can understand why you should feel that way 🥺",
+            "I am, but doesn't mean I don't mean it. You're too cute for me to find you annoying. But you're too humble to realise it so I won't bother convincing you why I know you could never annoy me. ",
+            "😑😑Fuu hyde, Anyways... you should click on 'Yes' button either way, there's a video of a funny penguin dancing. Kinda like you",
+            "You shouldn't click here either way at this point now",
+            "Yre video do yenguro hybne 🙄",
+            "Stop",
+            "*sighs, alr, you called for it. I didn't think it would come to this but ng hydoktra d yrroi 😾.",
+            "*sighs, alr, you called for it. I didn't think it would come to this but ng hydoktra d yrroi 😾."
+        ];
+
+        const noButtonTexts = [
+            "Maybe not? 😊",
+            "Don't believe you! 🤨",
+            "You're just talking sweet 👊🏻👊🏻",
+            "FUUUROO NGG!!!",
+            "TLLE",
+            "I will keep on clicking!!!",
+            "No",
+            "NOO hybneeeee",
+            "Hydok unaa 🙄. I'll still click.",
+            "Hydok unaa 🙄. I'll still click."
+        ];
+
+        function respond(answer) {
+            if (answer === 'yes') {
+                window.location.href = "penguin.html"; // Redirect to dancing penguin page
+            }
+        }
+
+        function handleNo() {
+            let noButton = document.getElementById("no");
+            let warningText = document.getElementById("warning");
+
+            if (noClickCount < 9) {
+                // Move button farther away
+                let x = Math.random() * 500 - 250; // Random value between -250 and 250
+                let y = Math.random() * 500 - 250;
+                noButton.style.transform = `translate(${x}px, ${y}px)`;
+
+                // Update question and button text
+                warningText.textContent = comfortingQuestions[noClickCount];
+                noButton.textContent = noButtonTexts[noClickCount];
+                warningText.style.display = "block";
+
+                noClickCount++;
+            } else {
+                // Final decision phase
+                warningText.textContent = "Are you really sure????";
+                document.getElementById("finalButton").style.display = "inline-block";
+                noButton.style.display = "none"; // Hide the no button
+            }
+        }
+
+        function redirectToCountdown() {
+            window.location.href = "countdown.html"; // Redirect to countdown page
+        }
+    </script>
+
+</body>
+</html>
